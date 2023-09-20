@@ -57,8 +57,8 @@ export function ToyIndex() {
         <section className='main-area-container'>
             <section className='main-container'>
                 <ToyFilter labels={labels} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <ToyList toys={toys} onRemoveToy={onRemoveToy}  />
                 <button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</button>
+                <ToyList toys={toys} onRemoveToy={onRemoveToy}  />
             </section>
         </section>
     )
