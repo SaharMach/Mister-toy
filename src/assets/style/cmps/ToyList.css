@@ -1,0 +1,46 @@
+.toy-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.toy-preview {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toy-item {
+    flex: 1;
+}
+
+.details-link {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.details-link:hover {
+    background-color: #0056b3;
+}
+
+.toy-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.toy-actions button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.toy-actions button:hover {
+    background-color: #f0f0f0;
+}
