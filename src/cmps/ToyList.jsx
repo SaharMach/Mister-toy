@@ -5,22 +5,22 @@ import { ToyPreview } from "./ToyPreview.jsx"
 
 export function ToyList({ toys, onRemoveToy }) {
     return (
-        <ul className="toy-list">
-            {toys.map(toy =>
-                <li className="toy-preview" key={toy._id}>
-                    <ToyPreview toy={toy} />
-                    <div className="toy-actions">
-                        <button onClick={() => onRemoveToy(toy._id)}>x</button>
-                        <Link to={`/toy/edit/${toy._id}`}>
-                                    <button className="edit-btn">Edit</button>
-                        </Link>
-                        {/* <button onClick={() => onEditToy(toy)}>Edit</button> */}
-                    </div>
-                    {/* <button className="buy" onClick={() => addToCart(toy)}>Add to Cart</button> */}
-                </li>
-            )}
-        </ul>
-    );
+        <section className="toy-list">
+        {toys.map(toy => (
+            <div className="toy-preview" key={toy._id}>
+                <ToyPreview toy={toy} />
+                <div className="toy-actions">
+                <Link to={`/toy/edit/${toy._id}`} className="edit-link">
+                        <button className="edit-btn">Edit</button>
+                    </Link>
+                    <button onClick={() => onRemoveToy(toy._id)}>x</button>
+                    
+                </div>
+                
+            </div>
+        ))}
+    </section>
+    )
 }
 
 

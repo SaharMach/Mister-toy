@@ -13,7 +13,7 @@ export function AppFooter() {
             <a href="/">Privacy</a> | 
             <a href="/">Contact</a>
         </div>
-        <span>&copy; 2023 TODO App</span>
+        <span>&copy; 2023 Toy App</span>
     </footer>
     
     

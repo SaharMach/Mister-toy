@@ -6,10 +6,9 @@ import { SET_TOY, REMOVE_TOY,ADD_TOY,UPDATE_TOY,SET_LABELS } from '../reducer/to
 
 export function loadToys() {
     const { filterBy } = store.getState().toyModule
-    console.log('filterBy:', filterBy)
     return toyService.query(filterBy)
         .then(toys => {
-            console.log('contacts:', toys)
+            console.log('toysfrom load:', toys)
             store.dispatch({ type: SET_TOY, toys: toys.toysToShow })
             store.dispatch({ type: SET_LABELS, labels: toys.labels})
         })
@@ -33,10 +32,8 @@ export function removeToy(toyId) {
 
 export function saveToy(toy) {
     const type = toy._id ? UPDATE_TOY : ADD_TOY
-    console.log('toyToSave:', toy)
     return toyService.save(toy)
         .then(toyToSave => {
-            console.log('savedContact: from action', toyToSave)   
             store.dispatch({ type, toy: toyToSave })
             return toyToSave
         })

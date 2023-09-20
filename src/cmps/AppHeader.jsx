@@ -6,7 +6,7 @@ export function AppHeader() {
 return (
     <header className="app-header">
         <nav>
-            <h1>TODO App</h1>
+            <h1>Toy App</h1>
             <div className="nav-links">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/toy">Toys</NavLink>

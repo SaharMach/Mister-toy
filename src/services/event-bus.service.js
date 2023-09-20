@@ -13,7 +13,7 @@ function createEventEmitter() {
         }
     }
 }
-//fjjfjfjfjjj
+
 export const eventBusService = createEventEmitter()
 
 export function showUserMsg(msg) {

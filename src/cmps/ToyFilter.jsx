@@ -46,7 +46,7 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
             <option value="false">No</option>
         </select>
         <label>Labels:</label>
-        <select name="labels" className="form-select" value={filterByToEdit.labels} onChange={handleChange}>
+        <select multiple name="labels" className="form-select" value={filterByToEdit.labels} onChange={handleChange}>
             <option value="">Select...</option>
             {labels.map((label, idx) => (
                 <option key={idx} value={label}>
