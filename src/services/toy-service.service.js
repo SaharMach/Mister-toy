@@ -4,6 +4,7 @@ import { utilService } from './util.service.js'
 // import { userService } from './user.service.js'
 // import { func } from 'prop-types'
 import { httpService } from './http.service.js'
+const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
 const BASE_URL = 'toy/'
 

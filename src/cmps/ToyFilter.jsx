@@ -27,7 +27,6 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
 
     return  (
         <section className="toy-filter-section">
-    <h2>Toy Filter</h2>
     <form className="toy-filter-form">
         <label htmlFor="name">Name:</label>
         <input

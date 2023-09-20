@@ -8,7 +8,7 @@ export function ToyPreview({ toy }) {
             </div>
             <div className="card-body">
                 <p><strong>Price:</strong> ${toy.price}</p>
-                <p><strong>Labels:</strong> {toy.labels.join(', ')}</p>
+                <p><strong>Labels:</strong> {toy.labels}</p>
             </div>
             <div className="card-footer">
                 <Link to={`/toy/${toy._id}`} className="btn-details">Details</Link>

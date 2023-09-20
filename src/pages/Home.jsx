@@ -2,11 +2,11 @@ export function Home() {
   return (
     <section className="home">
       <h1 className="home-title">Welcome to 
-        <br/>TODO APP</h1>
+        <br/>ToyBox Store</h1>
       <p className="intro-text">
-        Organize your life with our Todo App. Prioritize, schedule, and conquer your tasks with our intuitive to-do app.
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, cupiditate. Tempore at vitae qui corrupti veritatis vel aperiam, minima error doloribus corporis necessitatibus soluta quis delectus sed ipsum laboriosam perspiciatis!
       </p>
-      <img src="https://media.istockphoto.com/id/1269452744/vector/checklist-clipboard-and-pencil-icon-flat-design-on-white-background.jpg?s=612x612&w=0&k=20&c=ef3-8bgaHGTG174fbc5bpQxh_g2vgsWdqeJ447Aa-sM=" alt="Todo App" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSodFiBJ3Cj6SS3y2ns8ze7rFkLp_L7ubqVlA&usqp=CAU" alt="ToyBox Store" className="home-image" />
     </section>
   )
 }

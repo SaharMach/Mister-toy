@@ -1,15 +1,15 @@
 .about-section {
     font-family: 'Arial', sans-serif;
-    background-color: #E1F9E8;
+    background-color: #E6F7FF;  /* Light blue background */
     max-width: 850px;
     margin: 50px auto;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 100, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 255, 0.1); /* Shadow with a blue tint */
 }
 
 .header-title {
-    color: #007B55; 
+    color: #0055A5;  /* Dark blue color */
     text-align: center;
     font-size: 2.7rem;
     margin-bottom: 25px;
@@ -22,14 +22,14 @@
     font-size: 1.1rem;
     line-height: 1.7;
     margin: 20px 0;
-    color: #555;
+    color: #555555;
     transform: translateY(30px);
     opacity: 0;
     animation: fadeInUp 1.3s forwards 0.4s;
 }
 
 .features-container {
-    background-color: #C8EED7; 
+    background-color: #BFDFFF;  /* A different shade of light blue */
     padding: 25px;
     border-radius: 8px;
     margin: 25px 0;
@@ -41,11 +41,11 @@
 .features-title {
     font-size: 1.6rem;
     margin-bottom: 20px;
-    color: #00573A;
+    color: #004485;  /* Even darker shade of blue */
 }
 
 .feature-item {
-    color: #555;
+    color: #555555;
     margin-bottom: 12px;
     padding-left: 1em;
     text-indent: -1em;
@@ -54,7 +54,7 @@
 
 .user-testimonial {
     text-align: center;
-    color: #555;
+    color: #555555;
     font-style: italic;
     transform: translateY(30px);
     opacity: 0;
