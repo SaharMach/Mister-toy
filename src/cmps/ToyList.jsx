@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
+import {CircularIndeterminate} from '../cmps/Loader.jsx'
+
 
 import { ToyPreview } from "./ToyPreview.jsx"
 
 export function ToyList({ toys, onRemoveToy }) {
+    console.log(toys);
+    if(!toys.length) return <CircularIndeterminate />
     return (
         <section className="toy-list">
-        {toys.map(toy => (
+        {toys ? toys.map(toy => (
             <div className="toy-preview" key={toy._id}>
                 <ToyPreview toy={toy} />
                 <div className="toy-actions">
@@ -18,7 +22,9 @@ export function ToyList({ toys, onRemoveToy }) {
                 </div>
                 
             </div>
-        ))}
+        )) :
+        <CircularIndeterminate />
+        }
     </section>
     )
 }

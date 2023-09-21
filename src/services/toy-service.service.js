@@ -17,10 +17,9 @@ export const toyService = {
     getEmptyToy
 }
 
-    function query(filterBy = {}) {
-        console.log('filterBy: from query', filterBy)
-        return httpService.get(BASE_URL, filterBy)
-    }
+function query(filterBy = {}) {
+    return httpService.get(BASE_URL, filterBy)
+}
     
 
 function getDefaultFilter() {

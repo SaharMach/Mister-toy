@@ -11,6 +11,7 @@ import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
 import { AboutUs } from './pages/AboutUs'
+import { Dashboard } from './pages/Dashboard'
 import './assets/style/main.css'
 import { store } from './store/store'
 
@@ -29,6 +30,7 @@ export default function App() {
                           <Route path='/toy/:toyId' element={<ToyDetails />} />
                           <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
                           <Route path="/about" element={<AboutUs />} />
+                          <Route path="/dashboard" element={<Dashboard/>} />
                          {/* <Route path="/admin" element={<Admin />}/>
                           <Route path="user/profile" element={<UserProfile />}/>  */}
                       </Routes>

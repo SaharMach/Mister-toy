@@ -1,0 +1,14 @@
+.doughnut-container{
+    width: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doughnut-chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}

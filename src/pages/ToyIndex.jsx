@@ -7,8 +7,6 @@ import { loadToys, removeToy, saveToy } from '../store/action/toy.action.js'
 import { SET_FILTER } from '../store/reducer/toy.reducer.js'
 import { toyService } from '../services/toy-service.service.js'
 
-
-
 export function ToyIndex() {
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
@@ -52,12 +50,12 @@ export function ToyIndex() {
                 console.log('Cannot add todo', err)
             })
     }
-
+    
     return (
         <section className='main-area-container'>
             <section className='main-container'>
                 <ToyFilter labels={labels} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</button>
+                {!toys && <button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</button>}
                 <ToyList toys={toys} onRemoveToy={onRemoveToy}  />
             </section>
         </section>

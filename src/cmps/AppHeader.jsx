@@ -11,6 +11,7 @@ return (
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/toy">Toys</NavLink>
                 {/* {user && <NavLink to="/user/profile">Profile</NavLink>} */}
+                <NavLink to="/dashboard">Dashboard</NavLink>
                 <NavLink to="/about">About</NavLink>
             </div>
         </nav>

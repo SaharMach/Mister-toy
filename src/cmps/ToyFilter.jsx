@@ -1,23 +1,26 @@
 
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
+import BasicSelect from './BasicSelect.jsx'; 
+import MultipleSelectChip from './MultpleSelectChip.jsx'
+import BasicTextFields from "./BasicTextField.jsx";
+
 
 
 export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
+    console.log('from filter' ,labels);
     const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
 
     onSetFilterBy = useRef(utilService.debounce(onSetFilterBy))
 
     useEffect(() => {
-        // update father cmp that filters change very type
         onSetFilterBy.current(filterByToEdit)
     }, [filterByToEdit])
 
     function handleChange({ target }) {
         let { value, name: field, type, options } = target;
-    
-        if (field === "labels") {
-          value = [...target.selectedOptions].map((option) => option.value);
+        if (type === 'select-multiple') { //active by click shift
+            value = Array.from(target.selectedOptions, (option) => option.value)
         } else {
           value = type === "number" ? +value || "" : value;
         }
@@ -25,45 +28,21 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
       }
 
 
+
     return  (
         <section className="toy-filter-section">
-    <form className="toy-filter-form">
-        <label htmlFor="name">Name:</label>
-        <input
-            type="text"
-            id="name"
-            name="txt"
-            className="form-input"
-            placeholder="Toy name"
-            value={filterByToEdit.txt}
-            onChange={handleChange}
-        />
-        <label>In Stock:</label>
-        <select name="inStock" className="form-select" value={filterByToEdit.inStock} onChange={handleChange}>
-            <option value="">All</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-        <label>Labels:</label>
-        <select multiple name="labels" className="form-select" value={filterByToEdit.labels} onChange={handleChange}>
-            <option value="">Select...</option>
-            {labels.map((label, idx) => (
-                <option key={idx} value={label}>
-                    {label}
-                </option>
-            ))}
-        </select>
-        <label>Sort:</label>
-        <select name="sortBy" className="form-select" value={filterByToEdit.sortBy} onChange={handleChange}>
-            <option value="">Select...</option>
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-            <option value="created">Date</option>
-        </select>
-    </form>
-</section>
+        <form className="toy-filter-form">
+            <BasicTextFields name={'txt'} handleChange={handleChange} value={filterByToEdit.txt} />
+            <MultipleSelectChip labels={labels} handleChange={handleChange} value={filterByToEdit.labels} />
 
+            <BasicSelect field={'inStock'} props={[{value:'', display:'All'},
+            {value:'true', display:'Yes'}, {value:'false', display:'No'}]}
+            value={filterByToEdit.inStock} handleChange={handleChange} />
 
-
-);
+            <BasicSelect field={'sortBy'} props={[{value:'', display:'Select...'},
+            {value:'name', display:'Name'}, {value:'price', display:'Price'}, {value:'created', display:'Date'}]}
+            value={filterByToEdit.sortBy} handleChange={handleChange} />
+            </form>
+        </section>
+)
 }
