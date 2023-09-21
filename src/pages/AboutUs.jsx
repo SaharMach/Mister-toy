@@ -1,3 +1,5 @@
+import SimpleMap from '../cmps/StoreLocation'
+
 export function AboutUs() {
     return (
         <section className="about-section">
@@ -15,6 +17,7 @@ export function AboutUs() {
             </div>
             
             <p className="user-testimonial">Join thousands of satisfied parents and gift-givers who trust ToyBox Store to bring joy to their loved ones.</p>
+            <SimpleMap />
         </section>
     )
 }
