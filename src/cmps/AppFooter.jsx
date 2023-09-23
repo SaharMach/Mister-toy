@@ -1,3 +1,6 @@
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export function AppFooter() {
    
@@ -5,8 +8,10 @@ export function AppFooter() {
     return (
         <footer class="app-footer">
          <div>
-            <span><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-github"></i>
-            </a><a href="#"><i class="fa-brands fa-linkedin"></i></a></span> 
+            <span><a href=""><FacebookIcon/></a>
+            <a href=""><GitHubIcon /></a>
+            <a href=""><LinkedInIcon /></a></span>
+
         </div>      
         <div>
             <a href="/">Terms</a> | 

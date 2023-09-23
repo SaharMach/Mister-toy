@@ -23,7 +23,7 @@ export default function SimpleMap() {
 
     return (
         // Important! Always set the container height explicitly
-        <div style={{ marginBottom: '60px', height: '60vh', width: '50%' }}>
+        <div style={{ marginBottom: '80px', height: '40vh', width: '100%' }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: "" }}
                 center={defaultProps.center}
@@ -46,8 +46,8 @@ export default function SimpleMap() {
                 />
             </GoogleMapReact>
             <section style={{ display:'flex', justifyContent:'center', gap: '10px', marginTop: '10px' }}>
-                <Button onClick={() => onStoreLocationClick({ lat: 32.6429718, lng: 35.0928567 })} variant="outlined">Nitzan</Button>
-                <Button onClick={() => onStoreLocationClick({ lat: 31.741367768100375, lng: 34.63283303308573 })} variant="outlined">Yoqneam Illit</Button>
+                <Button onClick={() => onStoreLocationClick({ lat: 32.6429718, lng: 35.0928567 })} variant="outlined">Yoqneam Illit</Button>
+                <Button onClick={() => onStoreLocationClick({ lat: 31.741367768100375, lng: 34.63283303308573 })} variant="outlined">Nitzan</Button>
                 <Button onClick={() => onStoreLocationClick({ lat: 32.08088, lng: 34.78057 })} variant="outlined">Tel Aviv</Button>
             </section>
         </div>

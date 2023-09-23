@@ -2,7 +2,7 @@
     font-family: 'Arial', sans-serif;
     background-color: #E6F7FF;  /* Light blue background */
     max-width: 850px;
-    margin: 50px auto;
+    margin: 0 auto;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 255, 0.1); /* Shadow with a blue tint */

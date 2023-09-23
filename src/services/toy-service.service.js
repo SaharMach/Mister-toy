@@ -14,7 +14,7 @@ export const toyService = {
     save,
     remove,
     getDefaultFilter,
-    getEmptyToy
+    // getEmptyToy
 }
 
 function query(filterBy = {}) {
@@ -37,7 +37,8 @@ function getById(toyId) {
 }
 
 function remove(toyId) {
-    return httpService.delete(BASE_URL + toyId)}
+    return httpService.delete(BASE_URL + toyId)
+}
 
 function save(toy) {
     console.log('toy from save:', toy)
@@ -46,16 +47,5 @@ function save(toy) {
         return httpService.put(BASE_URL, toy)
     } else {
         return httpService.post(BASE_URL, toy)
-    }
-}
-
-function getEmptyToy(name, price ) {
-    let label = utilService.getRandomIntInclusive(0, labels.length)
-    return {
-        name,
-        price,
-        labels: labels[label],
-        inStock: true,
-        createdAt: Date.now()
     }
 }

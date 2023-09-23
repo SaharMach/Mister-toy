@@ -5,7 +5,8 @@ import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import {ToyList} from '../cmps/ToyList.jsx'
 import { loadToys, removeToy, saveToy } from '../store/action/toy.action.js'
 import { SET_FILTER } from '../store/reducer/toy.reducer.js'
-import { toyService } from '../services/toy-service.service.js'
+import Button from '@mui/material/Button';
+
 
 export function ToyIndex() {
     const dispatch = useDispatch()
@@ -40,8 +41,7 @@ export function ToyIndex() {
     function onAddToy() {
         const name = prompt('enter toy name')
         const price = +prompt('enter price')
-        const toyToSave = toyService.getEmptyToy()
-        const newToy = { ...toyToSave, name ,price }
+        const newToy = { name ,price }
         saveToy(newToy)
             .then(savedToy => {
                 showSuccessMsg('Toy added')
@@ -55,7 +55,7 @@ export function ToyIndex() {
         <section className='main-area-container'>
             <section className='main-container'>
                 <ToyFilter labels={labels} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</button>
+                <Button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</Button>
                 <ToyList toys={toys} onRemoveToy={onRemoveToy}  />
             </section>
         </section>
