@@ -30,10 +30,10 @@ export function ToyDetails() {
             <p>Labels: {toy.labels.join(', ')}</p>
             <p>Available in stock: {toy.inStock ? "Yes" : "No"}</p>
             <p>Created At: {new Date(toy.createdAt).toLocaleDateString()}</p>
-            <p className="description">
+            <p className="toy-details-description">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!
             </p>
-            <Link to="/toy" className="back-link">Back to Toy List</Link>
+            <Link to="/toy" className="toy-details-back-link">Back to Toy List</Link>
         </section>
     );
 }

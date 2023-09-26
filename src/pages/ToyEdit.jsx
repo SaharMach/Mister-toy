@@ -50,18 +50,21 @@ export function ToyEdit() {
   }
 
   return (
-    <section className="bug-edit">
-      <h2>{toyId ? 'Edit' : 'Add'} Bug</h2>
-
+    <section className="toy-edit">
+      <h2>{toyId ? 'Edit' : 'Add'} Toy</h2>
+      <img src="https://www.pngarts.com/files/10/Buzz-And-Woody-Toy-Story-PNG-Background-Image.png" alt="" />
       <form onSubmit={getToy}>
-        <label htmlFor="title">Title:</label>
+      <label htmlFor="price">Price:</label>
         <input
           onChange={handleChange}
-
-          type="text"
-          name="title"
-          id="title"
+          type="number"
+          name="price"
+          id="price"
+          min="0"
+          step="1"
+          placeholder="$0.00"
         />
+
         <button>{toyId ? 'Save' : 'Add'}</button>
       </form>
     </section>

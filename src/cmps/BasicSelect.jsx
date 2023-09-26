@@ -16,7 +16,7 @@ export default function BasicSelect({field, props ,value, handleChange }) {
           labelId="in-stock-select-label"
           id="in-stock-select"
           value={value}
-          label="In Stock:"
+          // label="In Stock:"
           onChange={handleChange}
           name={field}
         >

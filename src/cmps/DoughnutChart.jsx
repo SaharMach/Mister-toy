@@ -96,7 +96,7 @@ export function DoughnutChart({labels,toys}){
     }
     
     return(
-        <section className='doughnut-container'>
+        <section className='doughnut'>
         <span className='doughnut-chart'>By Stock
 
          <Doughnut data={dataCounts} />  

@@ -22,5 +22,5 @@ export function AppFooter() {
     </footer>
     
     
-    )
+  )
 }

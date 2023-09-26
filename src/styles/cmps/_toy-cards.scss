@@ -1,0 +1,27 @@
+
+
+
+.card{
+    position: relative;
+
+    &-in-stock{
+        position: absolute;
+        top: 0;
+        right: 4px;
+        color: rgb(85, 221, 85);
+    }
+
+    .card-labels{
+        width: max-content;
+        padding: 5px 5px;
+        border-radius: 20px;
+        margin-top: 20px;
+        span{
+            color: white;
+        }
+    }
+
+    .toy-actions{
+        text-decoration: none;
+    }
+}

@@ -14,6 +14,7 @@ import { AboutUs } from './pages/AboutUs'
 import { Dashboard } from './pages/Dashboard'
 import './assets/style/main.css'
 import { store } from './store/store'
+import './styles/main.scss'
 
 export default function App() {
   //asdasdasd

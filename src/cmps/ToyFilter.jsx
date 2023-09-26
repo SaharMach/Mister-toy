@@ -19,18 +19,19 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
 
     function handleChange({ target }) {
         let { value, name: field, type, options } = target;
+        console.log('type',type);
         if (type === 'select-multiple') { //active by click shift
             value = Array.from(target.selectedOptions, (option) => option.value)
         } else {
           value = type === "number" ? +value || "" : value;
         }
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
-      }
+    }
 
 
 
     return  (
-        <section className="toy-filter-section">
+        <section className="toy-filter">
         <form className="toy-filter-form">
             <BasicTextFields name={'txt'} handleChange={handleChange} value={filterByToEdit.txt} />
             <MultipleSelectChip labels={labels} handleChange={handleChange} value={filterByToEdit.labels} />

@@ -6,16 +6,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
+import { utilService } from '../services/util.service'
+
 
 
 export function ImgMediaCard({toy, onRemoveToy}) {
-
+  const colors = ['red','green','blue','purple','yellowlight','lightblue']
+  const currColIdx = utilService.getRandomIntInclusive(0, colors.length-1)
   return (
+    <section className='card'>
+
+    
     <Card sx={{ marginTop:1, maxWidth: 255, maxHeight:500 }}>
       <CardMedia
         component="img"
         alt="green iguana"
-        height="150"
+        height="250"
         image={toy.img}
       />
       <CardContent>
@@ -27,18 +33,26 @@ export function ImgMediaCard({toy, onRemoveToy}) {
             
             </Typography>
         <Typography variant="body2" color="text.secondary">
-
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-           Molestiae eos eligendi qui dolore cum aperiam minus. Dolores quo distinctio ratione?<br/>
-           <strong>Price: ${toy.price} </strong>
+         
+        <strong>Price: ${toy.price} </strong><br/>
+        <section className='card-labels' style={ { backgroundColor: colors[currColIdx] } }>
+        
+        <span>{toy.labels}</span>
+        </section>
         </Typography>
         
+       
       </CardContent>
+      <section className='card-in-stock' >
+          {toy.inStock && 'In stock'}
+      </section>
+      
       <CardActions>
         <Button onClick={() => onRemoveToy(toy._id)}>Delete</Button>
         <Link  to={`/toy/edit/${toy._id}`} className="toy-actions"> <Button size="small">Edit</Button></Link>
         <Link to={`/toy/${toy._id}`} className="toy-actions"><Button size="small">Learn More</Button></Link>
       </CardActions>
     </Card>
+    </section>
   );
 }
