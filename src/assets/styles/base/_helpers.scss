@@ -1,0 +1,77 @@
+// Flex 
+.flex {
+    display: flex;
+}
+.inline-flex {
+    display: inline-flex;
+}
+
+.align-items {
+    align-items: center;
+}
+        
+.done{
+    text-decoration-line: line-through;
+}
+
+.onwheels {
+    background-color: red;
+}
+
+.boxgame {
+    background-color: green;
+}
+
+.art {
+    background-color:purple;
+}
+
+.baby {
+    background-color:bisque;
+}
+
+.doll {
+    background-color: rgb(20, 191, 54);
+}
+
+.puzzle {
+    background-color: orange;
+}
+
+.outdoor {
+    background-color: blue;
+}
+
+.batterypowered {
+    background-color: rgb(255, 8, 189);
+}
+
+// List 
+.clean-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+// Text 
+.vertical-text {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);  
+}
+
+// .tag-text {
+//     color: $clr1;
+//     text-transform: uppercase;
+//     @include type(boldCondensed);
+// }
+
+// Aspect ratios
+
+// .ratio-16-9 { @include aspect-ratio(100, 56); }
+
+// .ratio-square { @include aspect-ratio(100, 100); }
+
+// .ratio-card { @include aspect-ratio(100, 80); }
+
+// .ratio-poster { @include aspect-ratio(100, 150); }

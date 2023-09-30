@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import {Home} from './pages/Home'
+import { Home } from './pages/Home'
 import { AppFooter } from './cmps/AppFooter'
 import { AppHeader } from './cmps/AppHeader'
 import { ToyIndex } from './pages/ToyIndex'
@@ -12,9 +12,9 @@ import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
 import { AboutUs } from './pages/AboutUs'
 import { Dashboard } from './pages/Dashboard'
-import './assets/style/main.css'
+import { LoginSignup } from './pages/Login'
 import { store } from './store/store'
-import './styles/main.scss'
+import './assets/styles/main.scss'
 
 export default function App() {
   //asdasdasd
@@ -32,8 +32,7 @@ export default function App() {
                           <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
                           <Route path="/about" element={<AboutUs />} />
                           <Route path="/dashboard" element={<Dashboard/>} />
-                         {/* <Route path="/admin" element={<Admin />}/>
-                          <Route path="user/profile" element={<UserProfile />}/>  */}
+                          <Route path="/login" element={<LoginSignup/>} />
                       </Routes>
                   </main>
                   <AppFooter />

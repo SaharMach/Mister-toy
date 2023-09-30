@@ -1,30 +1,60 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toyService } from "../services/toy-service.service.js";
-import { showErrorMsg } from "../services/event-bus.service.js";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
+import ChatBox from "../cmps/ChatBox.jsx";
+import { saveToyMsgs } from '../store/action/toy.action.js'
+import Fab from '@mui/material/Fab';
+import * as React from 'react';
+
+import AddIcon from '@mui/icons-material/Add';
+
+
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null);
     const { toyId } = useParams();
+    const [txt, setTxt] = useState('')
     const navigate = useNavigate();
 
     useEffect(() => {
         loadToy();
-    }, [toyId]);
+    }, [toyId, txt]);
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then((loadedToy) => setToy(loadedToy))
-            .catch((err) => {
-                console.log('Had issues loading toy details', err);
-                showErrorMsg('Cannot load toy');
-                navigate('/toy');
-            });
+    async function loadToy() {
+        try{
+            const toy = await toyService.getById(toyId)
+            setToy(toy)
+        } catch (err) {
+            console.log('Had issues loading toy details', err);
+            showErrorMsg('Cannot load toy');
+            navigate('/toy');
+        }
     }
 
+
+    function handleChange({target}) {
+        setTxt(target.value)
+    }
+
+    async function onSaveToyMsg(ev){
+        ev.preventDefault()
+        try{
+            await saveToyMsgs(toyId, txt)
+            showSuccessMsg('Msg has been saved!')
+            setTxt('')
+        } catch (err) {
+            throw err
+        }
+    }
     if (!toy) return <div>Loading...</div>;
+    console.log('toy msgs from details', toy.msgs);
     return (
+        <section className="toy-details-container">
+
+
         <section className="toy-details">
+            <img src={toy.img} alt="" />
             <h1>{toy.name}</h1>
             <h5>Price: ${toy.price.toLocaleString()}</h5>
             <p>Labels: {toy.labels.join(', ')}</p>
@@ -34,6 +64,28 @@ export function ToyDetails() {
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!
             </p>
             <Link to="/toy" className="toy-details-back-link">Back to Toy List</Link>
+           
+           
         </section>
+        <section className="toy-details-chatbox">
+        <section className="toy-details-form">
+                <form onSubmit={onSaveToyMsg}>
+                <label htmlFor="name"></label>
+                    <input
+                    onChange={handleChange}
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={txt}
+                    placeholder="Add toy msg"
+                    />
+                    <button>Save</button>
+                </form>
+            </section>
+                {toy.msgs ? <ChatBox msgs={toy.msgs}/> : 'No msgs for this toy'}
+                
+        </section>
+       
+    </section>
     );
 }

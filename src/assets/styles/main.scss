@@ -1,0 +1,26 @@
+
+//BASE 
+@import 'base/layout';
+@import 'base/helpers';
+
+//SETUP
+@import 'setup/functions';
+
+// PAGES
+@import 'cmps/Home';
+@import 'cmps/AboutUs';
+@import 'cmps/Dashboard';
+@import 'cmps/ToyDetails';
+
+// COMPONENTS
+@import 'cmps/MainHeader';
+@import 'cmps/AppFooter';
+@import 'cmps/ToyList';
+@import 'cmps/ToyFilter';
+@import 'cmps/StockArea';
+@import 'cmps/ToyCards';
+@import 'cmps/ToyEdit';
+@import 'cmps/LineChartArea';
+@import 'cmps/SideBar';
+@import 'cmps/Login';
+@import 'cmps/UserMsg';

@@ -1,0 +1,62 @@
+/* Media queries Breakpoint mixins */
+
+@mixin for-mobile-layout {
+    @media (max-width: $break-narrow) {
+      @content;
+    }
+  }
+  
+  @mixin for-narrow-layout {
+    @media (min-width: $break-narrow) {
+      @content;
+    }
+  }
+  
+  @mixin for-normal-layout {
+    @media (min-width: $break-normal) {
+      @content;
+    }
+  }
+  
+  @mixin for-wide-layout {
+    @media (min-width: $break-wide) {
+      @content;
+    }
+  }
+  
+  @mixin layoutGTC($max) {
+    grid-template-columns:
+      minmax($layoutPadding, 1fr)
+      minmax(auto, $max)
+      minmax($layoutPadding, 1fr);
+  }
+
+//   @mixin btn($type: regular, $bg: $clr1, $clr: $clr3) {
+//     /* Style for "Rectangle" */
+//     width: 153px;
+//     height: 48px;
+//     border-radius: 24px;
+    
+  
+//     @if $type == regular {
+//       background-color: $bg;
+//       color: $clr;
+//       &:hover {
+//         background-color: $hover;
+//       }
+//     } @else if $type == dark {
+//       background-color: $clr2;
+//       color: $clr3;
+//       &:hover {
+//         background-color: $clr1;
+//         color: $clr3;
+//       }
+//     } @else if $type == light {
+//       background-color: $clr3;
+//       color: $clr2;
+//       &:hover {
+//         background-color: $clr1;
+//         color: $clr3;
+//       }
+//     }
+//   }

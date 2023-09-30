@@ -1,0 +1,60 @@
+.doughnut{
+    width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+}
+
+.stock-area-layout{
+    display: grid;
+    grid-template-rows: 50px 350px auto;
+    justify-content: center;
+    align-self: flex-start;
+
+    h1{
+        font-style: italic;
+        display: flex;
+        align-self: end;
+        
+    }
+}
+
+
+
+.stock-area-list {
+    font-family: 'Arial', sans-serif;
+    list-style: none;
+    padding-left: 0;
+    // margin: 20px 0;
+    max-width: 400px;
+
+    li {
+        padding: 10px 10px;
+    }
+
+    th {
+        font-weight: bold;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 8px; 
+    }
+
+    li {
+        color: #000000; 
+        background-color: #93a2dbb4;
+        margin-top: 2px; 
+        border-radius: 4px;
+        transition: background-color 0.3s; 
+        span{
+            font-weight: bold;
+            font-size: 16px;
+            color: #ffffffc1;
+          
+        }
+        
+    }
+    
+}

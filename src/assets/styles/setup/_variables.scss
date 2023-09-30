@@ -1,0 +1,25 @@
+
+// COLOR PALETTE
+$prmclr1: #014e56;
+$prmclr2: #f67e7e;
+$prmclr3: #ffffff;
+$secclr1: #79c8c7;
+$secclr2: #2c6269;
+$secclr3: #004047;
+$secclr4: #012f34;
+$secclr5: #002529;
+
+//BTNS COLOR PALETTE
+// $btnprmclr: 
+
+// LAYOUT
+$layoutPadding: 165px;
+
+// LAYOUT BREAKPOINTS
+$break-narrow: 1200px;
+$break-normal: 1360px;
+$break-wide: 1920px;
+
+$padded-break-narrow: $break-narrow + $layoutPadding * 2;
+$padded-break-normal: $break-normal + $layoutPadding * 2;
+$padded-break-wide: $break-wide + $layoutPadding * 2;

@@ -7,6 +7,7 @@ export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 export const SET_LABELS = 'SET_LABELS'
 // export const CONTACT_UNDO = 'CONTACT_UNDO'
+export const SET_TOY_MSG = 'SET_TOY_MSG'
 
 const initialState = {
     toys: [],
@@ -41,6 +42,9 @@ export function toyReducer(state = initialState, action) {
         // case CONTACT_UNDO:
         //     contacts = [...state.lastContact]
         //     return { ...state, contacts }
+        case SET_TOY_MSG: 
+            toys = state.toys.map(toy => toy._id === action.toyId ? { ...toy, msgs: action.msg } : toy)
+            return { ...state, toys }
         default:
             return state
     }

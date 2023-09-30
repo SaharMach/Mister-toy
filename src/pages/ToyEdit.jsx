@@ -33,20 +33,16 @@ export function ToyEdit() {
     setTxt(value)
   }
 
-  function getToy(ev) {
+  async function getToy(ev) {
     ev.preventDefault()
-    toyService.getById(toyId)
-      .then(toy => {
-        const toyToSave = { ...toy, name: txt }
-        saveToy(toyToSave)
-          .then(() => {
-                navigate('/toy')
-          })
-          .catch(err => {
-            console.log('Cannot update todo', err)
-            // showErrorMsg('Cannot update todo')
-          })
-      })
+    try{
+      const toy = await toyService.getById(toyId)
+      const toyToSave = await saveToy({ ...toy, name: txt })
+      navigate('/toy')
+
+    } catch (err) {
+      console.log('Cannot update toy', err)
+    }
   }
 
   return (
@@ -54,15 +50,14 @@ export function ToyEdit() {
       <h2>{toyId ? 'Edit' : 'Add'} Toy</h2>
       <img src="https://www.pngarts.com/files/10/Buzz-And-Woody-Toy-Story-PNG-Background-Image.png" alt="" />
       <form onSubmit={getToy}>
-      <label htmlFor="price">Price:</label>
+      <label htmlFor="name">Name:</label>
         <input
           onChange={handleChange}
-          type="number"
-          name="price"
-          id="price"
-          min="0"
-          step="1"
-          placeholder="$0.00"
+          type="text"
+          name="name"
+          id="name"
+          
+          placeholder="Change toy name"
         />
 
         <button>{toyId ? 'Save' : 'Add'}</button>

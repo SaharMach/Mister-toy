@@ -14,10 +14,16 @@ export const toyService = {
     save,
     remove,
     getDefaultFilter,
+    getLabels,
+    saveToyMsg
     // getEmptyToy
 }
 
-function query(filterBy = {}) {
+function getLabels(){
+    return labels
+}
+
+async function query(filterBy = {}) {
     return httpService.get(BASE_URL, filterBy)
 }
     
@@ -31,21 +37,28 @@ function getDefaultFilter() {
     };
 }
 
+async function saveToyMsg(toyId, txt){
+    console.log('txt:', txt)
+    const savedMsg = await httpService.post(BASE_URL + toyId + '/msg', {txt})
+    return savedMsg
+}
 
-function getById(toyId) {
+async function getById(toyId) {
     return httpService.get(BASE_URL + toyId)
 }
 
-function remove(toyId) {
+async function remove(toyId) {
     return httpService.delete(BASE_URL + toyId)
 }
 
-function save(toy) {
+async function save(toy) {
     console.log('toy from save:', toy)
+    var savedToy
     if (toy._id) {
         console.log('toy._id:', toy._id)
-        return httpService.put(BASE_URL, toy)
+        savedToy = await httpService.put(BASE_URL, toy)
     } else {
-        return httpService.post(BASE_URL, toy)
+        savedToy = await httpService.post(BASE_URL, toy)
     }
+    return savedToy
 }

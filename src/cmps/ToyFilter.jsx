@@ -19,12 +19,14 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
 
     function handleChange({ target }) {
         let { value, name: field, type, options } = target;
-        console.log('type',type);
         if (type === 'select-multiple') { //active by click shift
             value = Array.from(target.selectedOptions, (option) => option.value)
         } else {
           value = type === "number" ? +value || "" : value;
         }
+
+        console.log(value);
+
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
     }
 
@@ -37,7 +39,7 @@ export function ToyFilter({ filterBy, onSetFilterBy,labels }) {
             <MultipleSelectChip labels={labels} handleChange={handleChange} value={filterByToEdit.labels} />
 
             <BasicSelect field={'inStock'} props={[{value:'', display:'All'},
-            {value:'true', display:'Yes'}, {value:'false', display:'No'}]}
+            {value: 'true', display:'Yes'}, {value: 'false', display:'No'}]}
             value={filterByToEdit.inStock} handleChange={handleChange} />
 
             <BasicSelect field={'sortBy'} props={[{value:'', display:'Select...'},

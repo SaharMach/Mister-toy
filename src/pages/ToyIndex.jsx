@@ -11,51 +11,58 @@ import Button from '@mui/material/Button';
 export function ToyIndex() {
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
     // const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const labels = useSelector(storeState => storeState.toyModule.labels)
     // const isLoading = useSelector(storeState => storeState.carModule.isLoading)
     useEffect(() => {
-        loadToys()
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot load todos')
-            })
+        onLoadToys()
     }, [filterBy])
 
     function onSetFilterBy(filterBy) {
         dispatch({ type: SET_FILTER, filterBy })
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-            })
-            .catch(err => {
-                console.log('Cannot remove todo', err)
-                showErrorMsg('Cannot remove todo')
-            })
+    async function onLoadToys(){
+        try{
+            await loadToys()
+        }catch(err){
+            showErrorMsg('Cannot load toy')
+        }
     }
 
-    function onAddToy() {
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg('Toy removed')
+        } catch (err) {
+            console.log('Cannot remove todo', err)
+            showErrorMsg('Cannot remove toy')
+        }
+    }
+
+    async function onAddToy() {
         const name = prompt('enter toy name')
         const price = +prompt('enter price')
         const newToy = { name ,price }
-        saveToy(newToy)
-            .then(savedToy => {
-                showSuccessMsg('Toy added')
-            })
-            .catch(err => {
-                console.log('Cannot add todo', err)
-            })
+        try{
+            await saveToy(newToy)
+            showSuccessMsg('Toy added')
+
+        } catch (err) {
+            console.log('Cannot add toy', err)
+            showErrorMsg('Cannot add toy')
+
+        }
     }
     
     return (
         <section className='main-area'>
             <section className='main-area-container'>
                 <ToyFilter labels={labels} filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <Button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</Button>
+                {user && user.isAdmin ? <Button className='profile-btn add-btn' onClick={onAddToy}>Add Toy +</Button>
+                : ''}
                 <ToyList toys={toys} onRemoveToy={onRemoveToy}  />
             </section>
         </section>

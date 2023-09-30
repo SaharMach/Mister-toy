@@ -2,45 +2,57 @@
 import { toyService } from '../../services/toy-service.service.js'
 import { store } from "../store.js";
 
-import { SET_TOY, REMOVE_TOY,ADD_TOY,UPDATE_TOY,SET_LABELS } from '../reducer/toy.reducer.js'
+import { SET_TOY, REMOVE_TOY,ADD_TOY,UPDATE_TOY,SET_LABELS,SET_TOY_MSG } from '../reducer/toy.reducer.js'
 
-export function loadToys() {
+export async function loadToys() {
     const { filterBy } = store.getState().toyModule
-    return toyService.query(filterBy)
-        .then(toys => {
-            console.log('toysfrom load:', toys)
-            store.dispatch({ type: SET_TOY, toys: toys.toysToShow })
-            store.dispatch({ type: SET_LABELS, labels: toys.labels})
-        })
-        .catch(err => {
-            console.log('car action -> Cannot load todos', err)
+    try{
+        const toys = await toyService.query(filterBy)
+        console.log('toys: from load', toys)
+        const labels = toyService.getLabels()
+        store.dispatch({ type: SET_TOY, toys })
+        store.dispatch({ type: SET_LABELS, labels})
+    } catch (err){
+            showErrorMsg('Cannot load toys')    
             throw err
-        })
+    }     
 }
 
-export function removeToy(toyId) {
-    return toyService.remove(toyId)
-        .then(() => {
-            store.dispatch({ type: REMOVE_TOY, toyId })
-        })
-        .catch(err => {
-            store.dispatch({ type: TOY_UNDO })
-            console.log('todo action -> Cannot remove todo', err)
-            throw err
-        })
+export async function removeToy(toyId) {
+    try{
+        await toyService.remove(toyId)
+        store.dispatch({ type: REMOVE_TOY, toyId })
+
+    } catch (err) {
+        console.log('toy action -> Cannot remove toy', err)
+        throw err
+    }
 }
 
-export function saveToy(toy) {
+export async function saveToy(toy) {
     const type = toy._id ? UPDATE_TOY : ADD_TOY
-    return toyService.save(toy)
-        .then(toyToSave => {
-            store.dispatch({ type, toy: toyToSave })
-            return toyToSave
-        })
-        .catch(err => {
-            console.log('todo action -> Cannot save todo', err)
-            throw err
-        })
+    try {
+        const toyToSave = await toyService.save(toy)
+        store.dispatch({ type, toy: toyToSave })
+        return toyToSave
+    } catch (err) {
+        console.log('toy action -> Cannot save toy', err)
+        throw err
+    }
+   
+}
+
+export async function saveToyMsgs(toyId, txt){
+    console.log('txt:, from action', txt)
+    try{
+        const msg = await toyService.saveToyMsg(toyId,txt)
+        console.log('msg: from action!', msg)
+        store.dispatch({type: SET_TOY_MSG, toyId, msg })
+    } catch (err) {
+        console.log('toy action -> Cannot save toy msg', err)
+
+        throw err
+    }
 }
 
 // export function toggleTodo(todoId, user) {

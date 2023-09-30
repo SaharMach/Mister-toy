@@ -1,0 +1,40 @@
+
+
+.line-charts-layout {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-self: baseline;
+    width: 550px;
+    justify-self: center;
+
+    .bills-list {
+        display: flex;
+        // width: 45%;
+        li {
+            background-color: #ffffff;
+           display: flex;
+           width: 120px;
+           gap: 10px;
+           border: 1px solid lightblue;
+            transition: background-color 0.3s;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            img{
+                height: 40px;
+                width: 40px;
+            }
+        }
+        span {
+            color: #666;
+            font-size: 16px;
+        }
+        
+    }
+    .profit-chart {
+        font-family: 'Arial', sans-serif;
+        width: 550px;
+    }
+}
+
+

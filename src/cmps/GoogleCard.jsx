@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import { utilService } from '../services/util.service'
 
-
+import { useDispatch, useSelector } from 'react-redux'
 
 export function ImgMediaCard({toy, onRemoveToy}) {
-  const colors = ['red','green','blue','purple','yellowlight','lightblue']
-  const currColIdx = utilService.getRandomIntInclusive(0, colors.length-1)
+  const user = useSelector(storeState => storeState.userModule.loggedinUser)
+  const transformedLabels = toy.labels.map(label => label.toLowerCase().replace(/\s+/g, '')).join(', ');
   return (
     <section className='card'>
 
@@ -20,7 +20,7 @@ export function ImgMediaCard({toy, onRemoveToy}) {
     <Card sx={{ marginTop:1, maxWidth: 255, maxHeight:500 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="img supposed to be here 🤷🏼‍♂️"
         height="250"
         image={toy.img}
       />
@@ -35,7 +35,7 @@ export function ImgMediaCard({toy, onRemoveToy}) {
         <Typography variant="body2" color="text.secondary">
          
         <strong>Price: ${toy.price} </strong><br/>
-        <section className='card-labels' style={ { backgroundColor: colors[currColIdx] } }>
+        <section className={`card-labels ${transformedLabels}`}>
         
         <span>{toy.labels}</span>
         </section>
@@ -48,8 +48,12 @@ export function ImgMediaCard({toy, onRemoveToy}) {
       </section>
       
       <CardActions>
-        <Button onClick={() => onRemoveToy(toy._id)}>Delete</Button>
-        <Link  to={`/toy/edit/${toy._id}`} className="toy-actions"> <Button size="small">Edit</Button></Link>
+
+        {user && user.isAdmin ? <section className='flex align-items'><Button onClick={() => onRemoveToy(toy._id)}>Delete</Button>
+        <Link  to={`/toy/edit/${toy._id}`} className="toy-actions"> <Button size="small">Edit</Button></Link></section> : ''}
+        
+
+
         <Link to={`/toy/${toy._id}`} className="toy-actions"><Button size="small">Learn More</Button></Link>
       </CardActions>
     </Card>
