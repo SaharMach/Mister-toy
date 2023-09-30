@@ -30,7 +30,7 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
 });
 
-export default function ChatBox({msgs}) {
+export default function ToyMsgs({msgs}) {
   console.log('msgs from chatbox', msgs);
   const formattedMessages = msgs.map(msg => ({
     id: msg.id, 
@@ -44,7 +44,7 @@ export default function ChatBox({msgs}) {
       <CssBaseline />
       <Paper square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
-          Inbox
+          Messages
         </Typography>
         <List sx={{ mb: 2 }}>
           {formattedMessages.map(({ id, primary, secondary, person }) => (

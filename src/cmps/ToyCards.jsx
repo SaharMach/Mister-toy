@@ -10,7 +10,7 @@ import { utilService } from '../services/util.service'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-export function ImgMediaCard({toy, onRemoveToy}) {
+export function ToyCards({toy, onRemoveToy}) {
   const user = useSelector(storeState => storeState.userModule.loggedinUser)
   const transformedLabels = toy.labels.map(label => label.toLowerCase().replace(/\s+/g, '')).join(', ');
   return (

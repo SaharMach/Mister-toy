@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import {CircularIndeterminate} from '../cmps/Loader.jsx'
 
 
-import {ImgMediaCard} from './GoogleCard.jsx'
+import {ToyCards} from './ToyCards.jsx'
 
 export function ToyList({ toys, onRemoveToy }) {
 
@@ -13,7 +13,7 @@ export function ToyList({ toys, onRemoveToy }) {
         <section className="toy-list">
         {toys ? toys.map(toy => (
             <div className="toy-preview" key={toy._id}>
-                <ImgMediaCard onRemoveToy={onRemoveToy} toy={toy} />   
+                <ToyCards onRemoveToy={onRemoveToy} toy={toy} />   
             </div>
         )) :
         <CircularIndeterminate />

@@ -51,18 +51,49 @@
             font-weight: 500; 
         }
 
-        .btn-logout {
-            background-color: #f8f9fa;  
-            border: 1px solid #e0e0e0;  
-            color: #333;
-            padding: 7px 15px;
-            border-radius: 5px; 
+        img{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 1px solid lightgrey;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+        }
 
+        .logout-menu {
+            position: absolute;
+            top: 100%;      /* Position right below the image */
+            right: 0;       /* Align to the right, same as user image */
+            background-color: #ffffff;  /* Background color */
+            box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.1); /* Shadow to make it look elevated */
+            border-radius: 5px;   /* Rounded corners */
+            margin-top: 5px; /* Little space from the user image */
+            width: 150px; /* Set a specific width for the menu */
+            z-index: 1000;  /* Ensure it appears above other elements */
+            cursor: pointer;
+        }
+        
+        .menu-item {
+            display: block;
+            width: 100%;      /* Take the full width of the parent */
+            text-align: left; /* Left align the text */
+            background: none; /* No background */
+            border: none;     /* Remove borders */
+            color: #333;      /* Text color */
+            padding: 10px 15px;  /* Padding for a better appearance */
+            font-size: 1em;   /* Font size */
+            font-weight: 400; /* Font weight */
+            cursor: pointer;
+            text-decoration: none;  /* Remove underline */
+            transition: background-color 0.3s ease;  /* Transition for hover effect */
+        
             &:hover {
-                background-color: #e0e0e0;
+                background-color: #f8f9fa;  /* Change background on hover */
+            }
+        
+            &:focus {
+                outline: none;  /* Remove focus outline */
             }
         }
+        
     }
 }

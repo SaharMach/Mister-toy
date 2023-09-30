@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toyService } from "../services/toy-service.service.js";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
-import ChatBox from "../cmps/ChatBox.jsx";
+import ToyMsgs from "../cmps/ToyMsgs.jsx";
 import { saveToyMsgs } from '../store/action/toy.action.js'
 import Fab from '@mui/material/Fab';
 import * as React from 'react';
@@ -12,14 +12,15 @@ import AddIcon from '@mui/icons-material/Add';
 
 
 export function ToyDetails() {
-    const [toy, setToy] = useState(null);
-    const { toyId } = useParams();
+    const [toy, setToy] = useState(null)
+    const { toyId } = useParams()
     const [txt, setTxt] = useState('')
-    const navigate = useNavigate();
+    const [renderMsgs, setRenderMsgs] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadToy();
-    }, [toyId, txt]);
+    }, [toyId, renderMsgs]);
 
     async function loadToy() {
         try{
@@ -42,7 +43,7 @@ export function ToyDetails() {
         try{
             await saveToyMsgs(toyId, txt)
             showSuccessMsg('Msg has been saved!')
-            setTxt('')
+            setRenderMsgs(txt)
         } catch (err) {
             throw err
         }
@@ -70,8 +71,8 @@ export function ToyDetails() {
         <section className="toy-details-chatbox">
         <section className="toy-details-form">
                 <form onSubmit={onSaveToyMsg}>
-                <label htmlFor="name"></label>
-                    <input
+                <label htmlFor="name">
+                    <textarea
                     onChange={handleChange}
                     type="text"
                     name="name"
@@ -79,10 +80,11 @@ export function ToyDetails() {
                     value={txt}
                     placeholder="Add toy msg"
                     />
-                    <button>Save</button>
+                    <button>+</button>
+                    </label>
                 </form>
             </section>
-                {toy.msgs ? <ChatBox msgs={toy.msgs}/> : 'No msgs for this toy'}
+                {toy.msgs ? <ToyMsgs msgs={toy.msgs}/> : 'No msgs for this toy'}
                 
         </section>
        

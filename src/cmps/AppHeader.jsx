@@ -8,6 +8,7 @@ import { logout } from "../store/action/user.action.js"
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
+    const [toggleLogoutBtn, setToggleLogoutBtn] = useState(false)
     const navigate = useNavigate()
 
 
@@ -16,7 +17,8 @@ export function AppHeader() {
     async function onLogout() {
         try{
             navigate('/')
-            const loggedOut = await logout()   
+            await logout()   
+            setToggleLogoutBtn(!toggleLogoutBtn)
             console.log('Logout successfully')
             showSuccessMsg('Logout successfully')
         }catch (err) {
@@ -40,8 +42,11 @@ return (
                 <NavLink to="/about">About</NavLink>
             </div>
             {user && <section className="user-section">
-                <span>Hello {user.fullname}</span>
-                <button onClick={onLogout} className="btn-logout">Logout</button>
+                {user.fullname}
+                <img src={`https://robohash.org/${user.fullname}`} alt="" onClick={()=> setToggleLogoutBtn(!toggleLogoutBtn)}/>
+                {toggleLogoutBtn && <div className="logout-menu">
+                <button onClick={onLogout} className="menu-item">Logout</button>
+                </div>}
             </section>}
         </nav>
         <UserMsg />
