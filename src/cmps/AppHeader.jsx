@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { logout } from "../store/action/user.action.js"
-
+import { ReviewExplore } from "../pages/ReviewExplore.jsx"
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
@@ -37,6 +37,7 @@ return (
                 {!user && <NavLink to="/login">Login</NavLink>}
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/toy">Toys</NavLink>
+                <NavLink to="/review">Reviews</NavLink>
                 {/* {user && <NavLink to="/user/profile">Profile</NavLink>} */}
                 <NavLink to="/dashboard">Dashboard</NavLink>
                 <NavLink to="/about">About</NavLink>
@@ -46,6 +47,8 @@ return (
                 <img src={`https://robohash.org/${user.fullname}`} alt="" onClick={()=> setToggleLogoutBtn(!toggleLogoutBtn)}/>
                 {toggleLogoutBtn && <div className="logout-menu">
                 <button onClick={onLogout} className="menu-item">Logout</button>
+                {user && <NavLink className="menu-item" to={`user/${user._id}`}>Details</NavLink>}
+
                 </div>}
             </section>}
         </nav>

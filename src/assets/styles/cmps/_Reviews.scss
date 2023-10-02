@@ -1,0 +1,48 @@
+.reviews-container {
+    margin: 3rem auto;
+    padding: 1rem;
+    border-radius: 6px;
+    height: 400px;
+    overflow: scroll;
+    position: relative;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    h2 {
+       
+        text-align: center;
+     
+    }
+    
+    .review-card {
+        background-color: #fff;
+        // margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 4px;
+        border-bottom: 1px solid gray;        
+
+        .review-user {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+
+            span {
+                color: #2c3e50;
+            }
+        }
+
+        .review-content {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #34495e;
+
+            q {
+                font-style: italic;
+            }
+        }
+
+        .review-toy-info {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+    }
+}

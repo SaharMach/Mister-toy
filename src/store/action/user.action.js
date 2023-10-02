@@ -1,5 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from "../store.js";
+import { socketService } from "../../services/socket.service.js";
 
 import { SET_USER } from '../reducer/user.reducer.js'
 
@@ -10,6 +11,7 @@ export async function login(credentials) {
         const user = await userService.login(credentials)
         store.dispatch({ type: SET_USER, user })
         console.log('user from service:', user)
+        socketService.login(user._id)
         return user
 
     } catch (err) {
@@ -22,6 +24,7 @@ export async function signup(credentials) {
     try{
         const user = await userService.signup(credentials)
         store.dispatch({ type: SET_USER, user })
+        socketService.login(user._id)
         return user
     } catch (err) {
         console.log('user actions -> Cannot signup', err)
@@ -33,6 +36,7 @@ export async function logout() {
     try{
         const loggedOut = await userService.logout()
         store.dispatch({ type: SET_USER, user: null })
+        socketService.logout()
         return loggedOut
     } catch (err) {
         console.error('user actions -> Cannot logout:', err)

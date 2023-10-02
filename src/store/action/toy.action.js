@@ -33,6 +33,7 @@ export async function saveToy(toy) {
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     try {
         const toyToSave = await toyService.save(toy)
+        console.log('toyToSave:', toyToSave)
         store.dispatch({ type, toy: toyToSave })
         return toyToSave
     } catch (err) {
@@ -43,14 +44,12 @@ export async function saveToy(toy) {
 }
 
 export async function saveToyMsgs(toyId, txt){
-    console.log('txt:, from action', txt)
     try{
         const msg = await toyService.saveToyMsg(toyId,txt)
         console.log('msg: from action!', msg)
         store.dispatch({type: SET_TOY_MSG, toyId, msg })
     } catch (err) {
         console.log('toy action -> Cannot save toy msg', err)
-
         throw err
     }
 }

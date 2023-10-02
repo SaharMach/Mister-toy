@@ -4,8 +4,10 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import {ToyList} from '../cmps/ToyList.jsx'
 import { loadToys, removeToy, saveToy } from '../store/action/toy.action.js'
-import { SET_FILTER } from '../store/reducer/toy.reducer.js'
+import { ADD_TOY, REMOVE_TOY, SET_FILTER } from '../store/reducer/toy.reducer.js'
 import Button from '@mui/material/Button';
+import { SOCKET_EVENT_TOY_ADDED, SOCKET_EVENT_TOY_REMOVED, socketService } from '../services/socket.service.js'
+import { store } from "../store/store.js";
 
 
 export function ToyIndex() {
@@ -18,6 +20,18 @@ export function ToyIndex() {
     // const isLoading = useSelector(storeState => storeState.carModule.isLoading)
     useEffect(() => {
         onLoadToys()
+        socketService.on(SOCKET_EVENT_TOY_ADDED, toy => {
+            store.dispatch({ type:ADD_TOY, toy: toy })
+        })
+
+        socketService.on(SOCKET_EVENT_TOY_REMOVED, toyId => {
+            store.dispatch({ type: REMOVE_TOY, toyId })
+        })
+
+        return () => {
+            socketService.off(SOCKET_EVENT_TOY_ADDED)
+            socketService.off(SOCKET_EVENT_TOY_REMOVED)
+        }
     }, [filterBy])
 
     function onSetFilterBy(filterBy) {

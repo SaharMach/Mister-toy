@@ -6,8 +6,11 @@ import ToyMsgs from "../cmps/ToyMsgs.jsx";
 import { saveToyMsgs } from '../store/action/toy.action.js'
 import Fab from '@mui/material/Fab';
 import * as React from 'react';
-
+import { Reviews } from "../cmps/Reviews.jsx";
 import AddIcon from '@mui/icons-material/Add';
+import {  addReview } from '../store/action/review.action.js'
+import { ChatApp } from "../cmps/Chat.jsx";
+import { Chat } from "@mui/icons-material";
 
 
 
@@ -18,18 +21,19 @@ export function ToyDetails() {
     const [renderMsgs, setRenderMsgs] = useState('')
     const navigate = useNavigate()
 
+
     useEffect(() => {
         loadToy();
-    }, [toyId, renderMsgs]);
+    }, [toyId, renderMsgs])
 
     async function loadToy() {
         try{
             const toy = await toyService.getById(toyId)
             setToy(toy)
         } catch (err) {
-            console.log('Had issues loading toy details', err);
-            showErrorMsg('Cannot load toy');
-            navigate('/toy');
+            console.log('Had issues loading toy details', err)
+            showErrorMsg('Cannot load toy')
+            navigate('/toy')
         }
     }
 
@@ -38,16 +42,28 @@ export function ToyDetails() {
         setTxt(target.value)
     }
 
-    async function onSaveToyMsg(ev){
-        ev.preventDefault()
+    async function onSaveToyMsg(toyId,text){
         try{
-            await saveToyMsgs(toyId, txt)
+            await saveToyMsgs(toyId, text)
             showSuccessMsg('Msg has been saved!')
-            setRenderMsgs(txt)
+            // setRenderMsgs(txt)
         } catch (err) {
             throw err
         }
     }
+
+    async function onSaveToyReview(ev){
+        ev.preventDefault()
+        console.log(txt);
+        try{
+            await addReview({toyId,txt})
+            showSuccessMsg('Review has been saved!')
+            // setRenderMsgs(txt)
+        } catch (err) {
+            throw err
+        }
+    }
+
     if (!toy) return <div>Loading...</div>;
     console.log('toy msgs from details', toy.msgs);
     return (
@@ -68,8 +84,11 @@ export function ToyDetails() {
            
            
         </section>
-        <section className="toy-details-chatbox">
-        <section className="toy-details-form">
+
+        <section className="toy-details-msgs-reviews">
+        <ChatApp onSaveToyMsg={onSaveToyMsg} toyId={toy._id} toyMsgs={toy.msgs} toyName={toy.name} toyImg={toy.img}/>
+        {/* <section className="toy-details-chatbox"> */}
+            {/* <section className="toy-details-form">
                 <form onSubmit={onSaveToyMsg}>
                 <label htmlFor="name">
                     <textarea
@@ -77,17 +96,34 @@ export function ToyDetails() {
                     type="text"
                     name="name"
                     id="name"
-                    value={txt}
                     placeholder="Add toy msg"
                     />
                     <button>+</button>
                     </label>
                 </form>
-            </section>
-                {toy.msgs ? <ToyMsgs msgs={toy.msgs}/> : 'No msgs for this toy'}
+            </section> */}
+                {/* {toy.msgs ? <ToyMsgs msgs={toy.msgs}/> : 'No msgs for this toy'} */}
                 
-        </section>
-       
+         {/* </section> */}
+            <section className="toy-details-reviews">
+                <section className="toy-details-form">
+                    <form onSubmit={onSaveToyReview}>
+                                <label htmlFor="name">
+                                    <textarea
+                                    onChange={handleChange}
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    placeholder="Add toy review"
+                                    />
+                                    <button>+</button>
+                                    </label>
+                                </form>
+                    <Reviews toyId={toy._id}/>
+                </section>
+            </section>
+            
+       </section>
     </section>
     );
 }

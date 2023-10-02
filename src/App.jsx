@@ -13,6 +13,8 @@ import { ToyEdit } from './pages/ToyEdit'
 import { AboutUs } from './pages/AboutUs'
 import { Dashboard } from './pages/Dashboard'
 import { LoginSignup } from './pages/Login'
+import { UserDetails } from './pages/UserDetails'
+import {ReviewExplore} from './pages/ReviewExplore'
 import { store } from './store/store'
 import './assets/styles/main.scss'
 
@@ -30,9 +32,11 @@ export default function App() {
                           <Route path="/toy" element={<ToyIndex />} />
                           <Route path='/toy/:toyId' element={<ToyDetails />} />
                           <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
+                          <Route path="/user/:userId" element={<UserDetails/>}/>
                           <Route path="/about" element={<AboutUs />} />
                           <Route path="/dashboard" element={<Dashboard/>} />
                           <Route path="/login" element={<LoginSignup/>} />
+                          <Route path="/review" element={<ReviewExplore />}/>
                       </Routes>
                   </main>
                   <AppFooter />
